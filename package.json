@@ -1,0 +1,12 @@
+{
+  "name": "vks-backend",
+  "version": "1.0.0",
+  "description": "Express based api of VKS Agro Solutions Society",
+  "license": "ISC",
+  "author": "Ajay Suresh SJ",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
