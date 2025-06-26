@@ -203,10 +203,55 @@ const resetPassword = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "Password changed successfully!"));
 });
 
+const updateAdminAvatar = asyncHandler(async (req, res) => {
+  const avatarLocalPath = req.file?.path;
+  if (!avatarLocalPath) {
+    throw new ApiError(400, "Avatar file is missing");
+  }
+  const avatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!avatar.url) {
+    throw new ApiError(
+      500,
+      "Something went wrong, unable to upload avatar to cloudinary"
+    );
+  }
+
+  const response = await deleteFromCloudinary(req.admin.avatar.publicId);
+  console.log(response);
+
+  const admin = await Admin.findByIdAndUpdate(
+    req.admin?._id,
+    {
+      $set: {
+        avatar: {
+          url: avatar.url,
+          publicId: avatar.public_id,
+        },
+      },
+    },
+    { new: true }
+  ).select("-password");
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "Avatar updated successfully!"));
+});
+
+const getAdminProfile = asyncHandler(async (req, res) => {
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(200, req.admin, "Admin profile fetched successfully")
+    );
+});
+
 export {
   registerAdmin,
   loginAdmin,
   logoutAdmin,
   refreshAccessToken,
   resetPassword,
+  updateAdminAvatar,
+  getAdminProfile,
 };
