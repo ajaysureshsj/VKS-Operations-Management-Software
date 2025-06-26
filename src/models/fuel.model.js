@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const fuelSchema = new mongoose.Schema(
   {
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+    },
     volumeInLiters: {
       type: Number,
       required: true,
