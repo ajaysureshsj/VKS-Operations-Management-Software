@@ -1,6 +1,20 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-import { jwt } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+
+const cloudinaryAssetSchema = new mongoose.Schema(
+  {
+    url: {
+      type: String,
+      required: true,
+    },
+    publicId: {
+      type: String,
+      required: true,
+    },
+  },
+  { _id: false }
+);
 
 const adminSchema = new mongoose.Schema(
   {
@@ -9,6 +23,8 @@ const adminSchema = new mongoose.Schema(
       required: [true, "Full name is required"],
       trim: true,
     },
+
+    avatar: cloudinaryAssetSchema,
 
     email: {
       type: String,
