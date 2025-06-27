@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { Counter } from "./counter.model.js";
 
 const serviceSchema = new mongoose.Schema(
   {
@@ -46,7 +47,7 @@ const invoiceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    servicesProvided: serviceSchema,
+    servicesProvided: [serviceSchema],
     subTotal: {
       type: Number,
       required: true,
@@ -72,10 +73,26 @@ const invoiceSchema = new mongoose.Schema(
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
-      required: true,
     },
   },
   { timestamps: true }
 );
+
+invoiceSchema.statics.generateInvoiceId = async function () {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+
+  const counterKey = `vks-${year}-${month}`;
+
+  const updatedCounter = await Counter.findByIdAndUpdate(
+    counterKey,
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true }
+  );
+
+  const paddedSeq = String(updatedCounter.seq).padStart(4, "0");
+  return `vks-${year}-${month}-${paddedSeq}`;
+};
 
 export const Invoice = mongoose.model("Invoice", invoiceSchema);

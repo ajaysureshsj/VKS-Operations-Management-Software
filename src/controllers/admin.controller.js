@@ -6,7 +6,7 @@ import ApiResponse from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const options = {
-  httpOnly: true,
+  httpOnly: false,
   secure: true,
 };
 

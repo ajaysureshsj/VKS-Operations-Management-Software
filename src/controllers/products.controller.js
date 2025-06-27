@@ -117,4 +117,12 @@ const deleteProduct = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, response, "Product deleted successfully"));
 });
 
-export { getProduct, addProduct, updateProduct, deleteProduct };
+const getAllProduct = asyncHandler(async (req, res) => {
+  const products = await Product.find();
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, products, "Fetched all products"));
+});
+
+export { getProduct, addProduct, updateProduct, deleteProduct, getAllProduct };
