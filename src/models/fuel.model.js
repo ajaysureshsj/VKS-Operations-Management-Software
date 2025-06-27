@@ -24,6 +24,16 @@ const fuelSchema = new mongoose.Schema(
     notes: {
       type: String,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
   },
   { timestamps: true }
 );

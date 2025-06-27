@@ -19,6 +19,16 @@ const maintenanceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
   },
   { timestamps: true }
 );
