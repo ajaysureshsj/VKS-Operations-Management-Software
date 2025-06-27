@@ -10,7 +10,7 @@ const clientSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    mobileNumber: {
+    phone: {
       type: String,
       required: true,
     },
@@ -32,7 +32,6 @@ const clientSchema = new mongoose.Schema(
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
-      required: true,
     },
   },
   { timestamps: true }

@@ -22,6 +22,7 @@ import fuelRouter from "./routes/fuel.routes.js";
 import productRouter from "./routes/product.route.js";
 import maintenanceRouter from "./routes/maintenance.route.js";
 import driverRouter from "./routes/driver.route.js";
+import clientRouter from "./routes/client.route.js";
 
 //routes declaration
 app.use("/api/v1/admin", adminRouter);
@@ -29,5 +30,6 @@ app.use("/api/v1/fuel", fuelRouter);
 app.use("/api/v1/product", productRouter);
 app.use("/api/v1/maintenance", maintenanceRouter);
 app.use("/api/v1/driver", driverRouter);
+app.use("/api/v1/client", clientRouter);
 
 export { app };
