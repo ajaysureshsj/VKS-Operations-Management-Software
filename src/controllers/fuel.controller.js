@@ -31,7 +31,7 @@ const addFuelPurchase = asyncHandler(async (req, res) => {
   }
 
   const response = await Fuel.create({
-    updatedBy: req.admin._id,
+    createdBy: req.admin._id,
     volumeInLiters,
     pricePerLiter,
     cost,
@@ -68,6 +68,7 @@ const updateFuelPurchase = asyncHandler(async (req, res) => {
     fuelPurchaseId,
     {
       $set: {
+        updatedBy: req.admin._id,
         volumeInLiters,
         pricePerLiter,
         cost,

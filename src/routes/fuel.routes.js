@@ -11,20 +11,12 @@ import {
 const router = Router();
 
 //************ Protected Routes *************//
-router
-  .route("/get-fuel-purchase-details")
-  .get(verifyJWT, upload.none(), getFuelPurchase);
+router.route("/get").get(verifyJWT, upload.none(), getFuelPurchase);
 
-router
-  .route("/add-new-fuel-purchase")
-  .post(verifyJWT, upload.none(), addFuelPurchase);
+router.route("/add").post(verifyJWT, upload.none(), addFuelPurchase);
 
-router
-  .route("/update-fuel-purchase")
-  .patch(verifyJWT, upload.none(), updateFuelPurchase);
+router.route("/update").patch(verifyJWT, upload.none(), updateFuelPurchase);
 
-router
-  .route("/delete-fuel-purchase")
-  .delete(verifyJWT, upload.none(), deleteFuelPurchase);
+router.route("/delete").delete(verifyJWT, upload.none(), deleteFuelPurchase);
 
 export default router;

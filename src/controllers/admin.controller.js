@@ -55,6 +55,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
   }
 
   const admin = await Admin.create({
+    createdBy: req.admin._id,
     fullName,
     email,
     phone,
@@ -224,6 +225,7 @@ const updateAdminAvatar = asyncHandler(async (req, res) => {
     req.admin?._id,
     {
       $set: {
+        updatedBy: req.admin._id,
         avatar: {
           url: avatar.url,
           publicId: avatar.public_id,

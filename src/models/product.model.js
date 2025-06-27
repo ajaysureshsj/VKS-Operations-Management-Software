@@ -18,7 +18,6 @@ const productSchema = new mongoose.Schema(
     updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
-      default: "not edited",
     },
   },
   { timestamps: true }

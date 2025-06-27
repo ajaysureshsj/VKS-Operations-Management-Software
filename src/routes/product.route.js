@@ -10,9 +10,9 @@ import {
 
 const router = Router();
 
-router.route("/get-product").get(verifyJWT, upload.none(), getProduct);
-router.route("/add-product").post(verifyJWT, upload.none(), addProduct);
-router.route("/update-product").patch(verifyJWT, upload.none(), updateProduct);
-router.route("/delete-product").delete(verifyJWT, upload.none(), deleteProduct);
+router.route("/get").get(verifyJWT, upload.none(), getProduct);
+router.route("/add").post(verifyJWT, upload.none(), addProduct);
+router.route("/update").patch(verifyJWT, upload.none(), updateProduct);
+router.route("/delete").delete(verifyJWT, upload.none(), deleteProduct);
 
 export default router;
