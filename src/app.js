@@ -19,9 +19,11 @@ app.use(cookieParser());
 //routes import
 import adminRouter from "./routes/admin.route.js";
 import fuelRouter from "./routes/fuel.routes.js";
+import productRouter from "./routes/product.route.js";
 
 //routes declaration
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/fuel", fuelRouter);
+app.use("/api/v1/product", productRouter);
 
 export { app };
